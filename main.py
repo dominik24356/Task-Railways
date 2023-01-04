@@ -1,7 +1,10 @@
+import os
+
 
 class Rail:
 
-    def __init__(self, num_of_cities, sitting_places, requests):
+    def __init__(self, num_of_cities, sitting_places, requests, file):
+
         if num_of_cities < 1 or num_of_cities > 60000:
             raise Exception("Incorrect amount of cities")
         self.__num_of_cities = num_of_cities
@@ -21,6 +24,8 @@ class Rail:
 
         self.__requests_in_progress = []
 
+        self.__file = file
+
     def get_number_of_cities(self):
         return self.__num_of_cities
 
@@ -31,7 +36,7 @@ class Rail:
     def add_requests(self):
         for i in range(self.__requests):
 
-            request = [int(e) for e in input("request number "+str(i)+" : ").split(" ")]
+            request = [int(e) for e in self.__file.readline().split(" ")]
 
             # validation of request
             if len(request) != 3:
@@ -76,14 +81,29 @@ def seats_reservation_system(rail):
                 rail.accept_request(r)
                 requests_answer[r] = "T"
 
-    print(requests_answer)
+    result_output = ""
+    for i in requests_answer:
+        result_output += i+"\n"
+    return result_output
 
 
-inf = [int(e) for e in input("cities | sitting places | requests : ").split(" ")]
+folder_path = "inputs"
+list_of_files = os.listdir(folder_path)
 
-rail_1 = Rail(inf[0], inf[1], inf[2])
+print(list_of_files)
 
-seats_reservation_system(rail_1)
+count_file = 1
+for file_name in list_of_files:
+    with open("inputs/"+file_name, 'r') as f:
+        f_content = f.readline()
+        inf = [int(e) for e in f_content.split(" ")]
+        rail_1 = Rail(inf[0], inf[1], inf[2], f)
+
+        with open("outputs/output"+str(count_file)+".txt", 'w') as output_file:
+            output_file.write(seats_reservation_system(rail_1))
+
+        count_file += 1
+
 
 
 

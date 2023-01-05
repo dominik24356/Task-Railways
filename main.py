@@ -70,7 +70,7 @@ class Rail:
 
 
 def seats_reservation_system(rail):
-    requests_answer = ["F"] * rail.get_number_of_requests()
+    requests_answer = ["N"] * rail.get_number_of_requests()
 
     rail.add_requests()
 
@@ -88,9 +88,9 @@ def seats_reservation_system(rail):
 
 
 folder_path = "inputs"
+
 list_of_files = os.listdir(folder_path)
 
-print(list_of_files)
 
 count_file = 1
 for file_name in list_of_files:

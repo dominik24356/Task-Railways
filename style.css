@@ -1,0 +1,23 @@
+body {
+    background-color: BurlyWood;
+    text-align: center;
+}
+
+table {
+    border: 3px solid black;
+    margin: auto;
+}
+
+th {
+    border: 3px solid black;
+
+}
+
+td {
+    text-align: center;
+}
+
+div {
+    margin-top: 10px;
+    border-top: solid;
+}

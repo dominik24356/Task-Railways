@@ -1,6 +1,5 @@
 import os
 
-
 class Rail:
 
     def __init__(self, num_of_cities, sitting_places, requests, file):
